@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'warsaw.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'grm',                      
         'USER': 'martazaryn',
         'PASSWORD': 'kraina108',
@@ -87,14 +87,12 @@ DATABASES = {
 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': get_env_variable('DATABASE_NAME'),
-#         'USER': get_env_variable('DATABASE_USER'),
-#         'PASSWORD': get_env_variable('DATABASE_PASSWORD'),
-#         'HOST': '',
-#         'PORT': '',
-#     }
+#          'ENGINE': 'django.contrib.gis.db.backends.postgis',
+#          'NAME': 'geodjango',
+#          'USER': 'geo',
+#     },
 # }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -126,7 +124,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
