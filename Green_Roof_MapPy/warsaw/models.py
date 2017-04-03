@@ -1,6 +1,8 @@
-from django.contrib.gis.db import models
+from django.db.models.fields import Field
 from django.db import models
+from django.contrib.gis.db import models
 from django.urls import reverse
+
 
 # Create your models here.
 
@@ -52,12 +54,11 @@ class GreenRoof(models.Model):
     lat = models.FloatField()
 
     class Meta:
-    	verbose_name='Green roofs: '
+    	verbose_name='Green roof'
+    	verbose_name_plural='Green roofs'
 
     def __str__(self):
         return "Green roof address: {}, type: {}, area: {}".format(self.roof_address, self.roof_type, self.area)
 
     # def get_absolute_url(self):
     #     return reverse('wola', kwargs={'pk' : self.id})
-
-    
