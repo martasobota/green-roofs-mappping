@@ -46,6 +46,7 @@ class GreenRoof(models.Model):
     total_place_area = models.FloatField()
     access = models.IntegerField(choices=ACCESSABILITY, verbose_name='Accessability: ')
     ownership_type = models.IntegerField(choices=OWNERSHIP, verbose_name='Type of the building: ')
+    additional_info = models.TextField(null=True)
 
     # GeoDjango-specific: a geometry field (MultiPolygonField)
     mpoly = models.MultiPolygonField() 
