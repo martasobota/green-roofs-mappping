@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from warsaw.views import WarsawView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', WarsawView.as_view(), name='index')
 ]
