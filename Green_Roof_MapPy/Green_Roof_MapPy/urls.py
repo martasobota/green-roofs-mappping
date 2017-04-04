@@ -15,9 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from warsaw.views import WarsawView
+from warsaw.views import AddGreenRoofView, DeleteGreenRoofView, LoginView, LogoutView, UpdateGreenRoofView, WarsawView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', WarsawView.as_view(), name='index')
+    url(r'^add_green_roof', AddGreenRoofView.as_view(), name='add-green-roof'),
+    url(r'^update_subject/(?P<pk>(\d)+)', UpdateGreenRoofView.as_view(), name='update-green-roof'),
+    url(r'^delete_green_roof/(?P<pk>(\d)+)', DeleteGreenRoofView.as_view(), name='delete-green-roof'),
+    url(r'^login', LoginView.as_view(), name='login'),
+    url(r'^logout', LogoutView.as_view(), name='logout'), #do name odwołujemy się w reversie
 ]
