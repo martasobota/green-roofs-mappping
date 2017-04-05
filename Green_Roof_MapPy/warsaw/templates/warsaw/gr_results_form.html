@@ -1,0 +1,12 @@
+{% extends 'warsaw/gr_search_form.html' %}
+
+{% block results %}
+	
+	<ol>
+		{% for greenroof in results %}
+			<li><a href = '{{ greenroof.get_absolute_url }}'>{{ greenroof.roof_address }}</a></li>
+		{% empty %}
+			No data available
+		{% endfor %}
+	</ol>
+{% endblock %}
