@@ -1,14 +1,31 @@
 from django import forms 
+from django.contrib.gis import forms
 from django.db.models import Value
 from django.db.models.functions import Concat
-from exercises.models import (
+from warsaw.models import (
 	City,
 	District,
 	GreenRoof,
+	ACCESSABILITY,
+	GREEN_ROOF_TYPES,
+	OWNERSHIP,
 	)
 
-from exercises.validators import valid_range
 from django.contrib.auth import authenticate
+import floppyforms as forms
+
+
+
+class AddGreenRoofForm(forms.Form):
+	roof_address = forms.CharField(max_length=256)
+	roof_type = forms.ChoiceField(choices=GREEN_ROOF_TYPES)
+	area = forms.FloatField()
+	total_place_area = forms.FloatField()
+	access = forms.ChoiceField(choices=ACCESSABILITY)
+	ownership_type = forms.ChoiceField(choices=OWNERSHIP)
+	mpoly = forms.gis.MultiPolygonField()
+	additional_info = forms.CharField(required=False)
+
 
 class AuthForm(forms.Form):
 	login = forms.CharField()
@@ -28,3 +45,15 @@ class AuthForm(forms.Form):
 
 		cleaned_data['user'] = user
 		return cleaned_data
+
+
+class SearchForm(forms.Form): 
+	address = forms.CharField(label='Green Roof Address', max_length=100)
+
+
+class GMapPolygonWidget(forms.gis.BaseGMapWidget,
+                        forms.gis.PolygonWidget):
+    google_maps_api_key = 'AIzaSyBgFBEhKWM98zvpQHY1h2C_VaVqMDQ2urE'
+
+class GmapForm(forms.Form):
+    poly = forms.gis.PolygonField(widget=GMapPolygonWidget)
