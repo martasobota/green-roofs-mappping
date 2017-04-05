@@ -68,5 +68,5 @@ class GreenRoof(models.Model):
     def __str__(self):
         return "Green roof address: {}, type: {}, area: {}".format(self.roof_address, self.roof_type, self.area)
 
-    # def get_absolute_url(self):
-    #     return reverse('wola', kwargs={'pk' : self.id})
+    def get_absolute_url(self):
+        return reverse('result-gr', kwargs={'pk' : self.id})
