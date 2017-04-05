@@ -4,7 +4,7 @@
 	
 	<ol>
 		{% for greenroof in results %}
-			<li><a href = '{{ greenroof.get_absolute_url }}'>{{ greenroof.roof_address }}</a></li>
+			<li><a href = '{{ greenroof.get_absolute_url }}'>{{ greenroof.roof_address }}, {{ greenroof.get_roof_type_display }}, {{ greenroof.area }} sq m</a></li>
 		{% empty %}
 			No data available
 		{% endfor %}
