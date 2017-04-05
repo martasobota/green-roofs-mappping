@@ -6,6 +6,12 @@ from django.urls import reverse
 
 # Create your models here.
 
+DISTRICTS = (
+	(1, 'Wola'),
+	(2, 'Śródmieście'),
+	(3, 'Mokotów')
+	)
+
 GREEN_ROOF_TYPES = (
 	(1, 'intensive'),
     (2, 'semi-intensive'),
@@ -17,6 +23,7 @@ ACCESSABILITY = (
 	(1, 'yes'),
 	(2, 'no'),
 )
+
 
 OWNERSHIP = (
 	(1, 'private'),
@@ -33,23 +40,23 @@ class City(models.Model):
 #Class with name of the district in specific city
 class District(models.Model):
 	name = models.CharField(max_length=256)
-	city = models.ForeignKey(City, related_name='city') #+ on_delete=models.CASCADE???
+	city = models.ForeignKey(City) #+ on_delete=models.CASCADE???
 
 	def __str__(self):
 		return "District: {}".format(self.name)
 
 class GreenRoof(models.Model):
-    district = models.ForeignKey(District, related_name='district') #+ on_delete=models.CASCADE???
+    district = models.ForeignKey(District) #+ on_delete=models.CASCADE???
     roof_address = models.CharField(max_length=256)
     roof_type = models.IntegerField(choices=GREEN_ROOF_TYPES, verbose_name='Green roof type: ')
     area = models.FloatField()
     total_place_area = models.FloatField()
     access = models.IntegerField(choices=ACCESSABILITY, verbose_name='Accessability: ')
     ownership_type = models.IntegerField(choices=OWNERSHIP, verbose_name='Type of the building: ')
-    additional_info = models.TextField(null=True)
+    additional_info = models.CharField(max_length=1024, null=True)
 
     # GeoDjango-specific: a geometry field (MultiPolygonField)
-    mpoly = models.MultiPolygonField() 
+    mpoly = models.MultiPolygonField()
    
     lon = models.FloatField()
     lat = models.FloatField()
