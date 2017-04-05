@@ -1,0 +1,15 @@
+{% extends 'warsaw/base.html' %}
+
+{% block content %}
+	<form action="{% url 'search-gr' %}" method='post'>
+		{% csrf_token %}
+		{{ form }}
+		<input type='submit' value='Search'/>
+	</form>
+
+	{% block results %}
+	{% endblock %}
+
+{% endblock %}
+
+
