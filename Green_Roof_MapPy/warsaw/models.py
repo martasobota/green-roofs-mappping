@@ -43,7 +43,7 @@ class District(models.Model):
 	city = models.ForeignKey(City) #+ on_delete=models.CASCADE???
 
 	def __str__(self):
-		return "District: {}".format(self.name)
+		return format(self.name)
 
 class GreenRoof(models.Model):
     district = models.ForeignKey(District) #+ on_delete=models.CASCADE???
@@ -66,7 +66,16 @@ class GreenRoof(models.Model):
     	verbose_name_plural='Green roofs'
 
     def __str__(self):
-        return "Green roof address: {}, type: {}, area: {}".format(self.roof_address, self.roof_type, self.area)
+        return "Green roof address: {}, district: {}, type: {}, area: {} sq m, total building's green roofs area: {}".format(self.roof_address, self.district, self.get_roof_type_display(), self.area, self.total_place_area)
 
     def get_absolute_url(self):
         return reverse('result-gr', kwargs={'pk' : self.id})
+
+
+    # @property
+    # def roof_info(self):
+    #     return "{} {}".format(self.district, self.roof_address, self.roof_type)
+
+    # @property
+    # def roof_type_info(self):
+    #     return self.get_roof_type_display()

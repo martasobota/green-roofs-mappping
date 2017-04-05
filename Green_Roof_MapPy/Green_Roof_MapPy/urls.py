@@ -18,6 +18,7 @@ from django.contrib import admin
 from warsaw.views import (AddGreenRoofView, 
     DeleteGreenRoofView, 
     GreenRoofSearchView, 
+    GreenRoofView,
     LoginView, 
     LogoutView, 
     UpdateGreenRoofView, 
@@ -32,7 +33,8 @@ urlpatterns = [
     url(r'^delete_gr/(?P<pk>(\d)+)', DeleteGreenRoofView.as_view(), name='delete-gr'),
     url(r'^login', LoginView.as_view(), name='login'),
     url(r'^logout', LogoutView.as_view(), name='logout'), #do name odwołujemy się w reversie
-    url(r'^gr_search/', GreenRoofSearchView.as_view(), name='gr-search'),
+    url(r'^search_gr/', GreenRoofSearchView.as_view(), name='search-gr'),
+    url(r'^result_gr/(?P<pk>(\d)+)', GreenRoofView.as_view(), name='result-gr'),
 ]
 
     

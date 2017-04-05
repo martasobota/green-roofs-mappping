@@ -5,6 +5,7 @@ from django.template import RequestContext, loader
 from django.shortcuts import render
 from django.views import View
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
+from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy, reverse
 from .forms import AuthForm, SearchForm
 from warsaw.models import GreenRoof, District, City
@@ -61,16 +62,22 @@ class AddGreenRoofView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 class GreenRoofSearchView(View):
 	def get(self, request):
 		ctx = {'form' : SearchForm()}
-		return render(request, 'student_search.html', ctx)
+		return render(request, 'warsaw/gr_search_form.html', ctx)
 
 	def post(self, request):
 		form = SearchForm(data=request.POST)
 		ctx = {'form' : form}
+		print('Form is valid', form.is_valid())
 		if form.is_valid():
 			address = form.cleaned_data['address']
 			greenroofs = GreenRoof.objects.filter(roof_address__icontains=address)
+			print(greenroofs)
 			ctx['results'] = greenroofs
-		return render(request, 'gr_results.html', ctx)
+		return render(request, 'warsaw/gr_results_form.html', ctx)
+
+class GreenRoofView(DetailView):
+	model = GreenRoof
+	fields = '__all__'
 
 class UpdateGreenRoofView(UpdateView):
 	model = GreenRoof
