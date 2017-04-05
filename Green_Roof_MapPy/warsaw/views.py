@@ -46,6 +46,7 @@ class LogoutView(View):
 		p = get_object_or_404(Poll, pk=poll_id)
 		return render_to_response('polls/detail.html', {'poll': p}, context_instance=RequestContext(request))
 
+#Needs expansion to show field for MultiPolygonField (now there is text Mpoly in the form, but no input place)
 class AddGreenRoofView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 	permission_required = ['warsaw.add_greenroof']
 	raise_exception = True
@@ -58,6 +59,9 @@ class AddGreenRoofView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 		else:
 			return super().handle_no_permission()
 
+class DeleteGreenRoofView(DeleteView):
+	model = GreenRoof
+	success_url = reverse_lazy('index')
 
 class GreenRoofSearchView(View):
 	def get(self, request):
