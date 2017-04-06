@@ -3,6 +3,7 @@ from django.db.models.fields import Field
 from django.urls import reverse
 from django.db import models
 from django.contrib.gis.db import models
+from django_google_maps import fields as map_fields
 
 
 # Create your models here.
@@ -58,12 +59,12 @@ class GreenRoof(models.Model):
 
     # GeoDjango-specific: a geometry field (MultiPolygonField)
     # In future : adding multipolygon field, so roof might be market out on the map as area
-    poly = models.PolygonField(max_length=2500, null=True, blank=True)
+    poly = models.PolygonField(null=True, blank=True)
    
     lon = models.FloatField()
     lat = models.FloatField()
 
-    objects = models.GeoManager()
+    # objects = models.GeoManager()
 
     class Meta:
     	verbose_name='Green roof'
@@ -74,6 +75,11 @@ class GreenRoof(models.Model):
 
     def get_absolute_url(self):
         return reverse('result-gr', kwargs={'pk' : self.id})
+
+
+# class Rental(models.Model):
+#     address = map_fields.AddressField(max_length=200)
+#     geolocation = map_fields.GeoLocationField(max_length=100)
 
 
 
