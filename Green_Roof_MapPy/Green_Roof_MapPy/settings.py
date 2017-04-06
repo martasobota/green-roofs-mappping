@@ -34,8 +34,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+GOOGLE_MAPS_API_KEY = 'AIzaSyBgFBEhKWM98zvpQHY1h2C_VaVqMDQ2urE'
 
 # Application definition
+
+MAP_WIDGETS = {
+    "GooglePointFieldWidget": (
+        ("zoom", 15),
+        ("mapCenterLocation", [52.239336, 20.968689]), 
+    ),
+    "GOOGLE_MAP_API_KEY": "AIzaSyBgFBEhKWM98zvpQHY1h2C_VaVqMDQ2urE"
+}
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -46,8 +55,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'floppyforms',
+    'django_google_maps',
     'rest_framework',
     'rest_framework_gis',
+    'mapwidgets',
     'warsaw',
 ]
 
