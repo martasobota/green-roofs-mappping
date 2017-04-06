@@ -1,8 +1,7 @@
 {% extends 'warsaw/base.html' %}
 
 {% block content %}
-	
-	{{ form.media }}
+
 
 	<form action="" method="post">
 		{% csrf_token %}
@@ -11,3 +10,6 @@
 	</form>
 
 {% endblock %}
+	{% block extra_js %}
+		{{ form.media }}
+	{% endblock %}
