@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'floppyforms',
+    'rest_framework',
+    'rest_framework_gis',
     'warsaw',
 ]
 
