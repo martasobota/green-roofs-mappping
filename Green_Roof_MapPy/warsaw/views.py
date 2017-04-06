@@ -7,7 +7,7 @@ from django.views import View
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy, reverse
-from .forms import AuthForm, SearchForm
+from .forms import AuthForm, SearchForm, AddGreenRoofForm
 from warsaw.models import GreenRoof, District, City
 
 # Create your views here.
@@ -50,8 +50,8 @@ class LogoutView(View):
 class AddGreenRoofView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 	permission_required = ['warsaw.add_greenroof']
 	raise_exception = True
-	model = GreenRoof #zaimportować klasę
-	fields = '__all__' #nie ma kwadratowych nawiasów, bo nie tworzymy listy, tylko bierzemy ALL
+	model = GreenRoof #remember to import class
+	form_class = AddGreenRoofForm
 
 	def handle_no_permission(self):
 		if not self.request.user.is_authenticated:
@@ -86,6 +86,7 @@ class GreenRoofView(DetailView):
 class UpdateGreenRoofView(UpdateView):
 	model = GreenRoof
 	fields = '__all__'
+	template_name_suffix = '_update_form'
 
 class DeleteGreenRoofView(DeleteView):
 	model = GreenRoof
