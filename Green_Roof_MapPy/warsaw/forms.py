@@ -1,6 +1,8 @@
 
 from django.db.models import Value
 from django.db.models.functions import Concat
+from django.db import models
+from django.contrib.gis.db import models
 from warsaw.models import (
 	City,
 	District,
@@ -13,20 +15,80 @@ from warsaw.models import (
 from django.contrib.auth import authenticate
 from django import forms 
 from django.contrib.gis import forms
-import floppyforms as forms
-# import floppyforms.__future__ as forms
+from django.contrib import admin
+# import floppyforms as forms
+import floppyforms.__future__ as forms
+
+# from mapwidgets.widgets import GooglePolygonFieldWidget
+from mapwidgets.widgets import GooglePointFieldWidget
+from mapwidgets.widgets import GooglePointFieldInlineWidget
+
+# class GreenRoofAdminForm(forms.ModelForm):
+#     class Meta:
+#         model = GreenRoof
+#         fields = __all__
+#         widgets = {
+#             'coordinates': GooglePointFieldWidget,
+#             'city_hall': GooglePointFieldWidget,
+#         }
+
+class PolygonWidget(forms.gis.PolygonWidget, forms.gis.BaseGMapWidget):
+	google_maps_api_key = 'AIzaSyBgFBEhKWM98zvpQHY1h2C_VaVqMDQ2urE'
+
+
+class AddGreenRoofForm(forms.ModelForm):
+	class Meta:
+		model = GreenRoof
+		fields = ['poly']
+
+		widgets = {
+		'poly' : PolygonWidget()
+		}
 
 
 
-class AddGreenRoofForm(forms.Form):
-	roof_address = forms.CharField(max_length=256)
-	roof_type = forms.ChoiceField(choices=GREEN_ROOF_TYPES)
-	area = forms.FloatField()
-	total_place_area = forms.FloatField()
-	access = forms.ChoiceField(choices=ACCESSABILITY)
-	ownership_type = forms.ChoiceField(choices=OWNERSHIP)
-	poly = forms.gis.PolygonField()
-	additional_info = forms.CharField(required=False)
+class GreenRoofAdminInline(admin.TabularInline):
+    model = GreenRoof
+    extra = 3
+    formfield_overrides = {
+        models.PointField: {"widget": GooglePointFieldInlineWidget}
+    }
+
+class GreenRoofAdmin(admin.ModelAdmin):
+    inlines = (GreenRoofAdminInline,)
+
+
+	# roof_address = forms.CharField(max_length=256)
+	# roof_type = forms.ChoiceField(choices=GREEN_ROOF_TYPES)
+	# area = forms.FloatField()
+	# total_place_area = forms.FloatField()
+	# access = forms.ChoiceField(choices=ACCESSABILITY)
+	# ownership_type = forms.ChoiceField(choices=OWNERSHIP)
+	# poly = forms.gis.PolygonField(widget=PolygonWidget)
+	# additional_info = forms.CharField(required=False)
+
+
+# class AddGreenRoofForm(forms.Form):
+# 	roof_address = forms.CharField(max_length=256)
+# 	roof_type = forms.ChoiceField(choices=GREEN_ROOF_TYPES)
+# 	area = forms.FloatField()
+# 	total_place_area = forms.FloatField()
+# 	access = forms.ChoiceField(choices=ACCESSABILITY)
+# 	ownership_type = forms.ChoiceField(choices=OWNERSHIP)
+# 	poly = forms.gis.PolygonField(widget=PolygonWidget)
+# 	additional_info = forms.CharField(required=False)
+
+	# class GMapPolygonWidget(forms.gis.BaseGMapWidget, forms.gis.PolygonWidget):
+	# 	google_maps_api_key = 'AIzaSyBgFBEhKWM98zvpQHY1h2C_VaVqMDQ2urE'
+
+	# class GmapForm(forms.Form):
+	#     poly = forms.gis.PolygonField(widget=GMapPolygonWidget)
+
+	# class Media:
+	#     extend = False
+	#     js = ('js/openlayers/OpenLayers.js',
+	#           'https://maps.google.com/maps/api/js?v=3&sensor=false',
+	#           'floppyforms/js/MapWidget.js')
 
 
 class AuthForm(forms.Form):
@@ -53,15 +115,5 @@ class SearchForm(forms.Form):
 	address = forms.CharField(label='Green Roof Address', max_length=100)
 
 
-class GMapPolygonWidget(forms.gis.BaseGMapWidget, forms.gis.PolygonWidget):
-    google_maps_api_key = 'AIzaSyBgFBEhKWM98zvpQHY1h2C_VaVqMDQ2urE'
 
-class GmapForm(forms.Form):
-    poly = forms.gis.PolygonField(widget=GMapPolygonWidget)
-
-class Media:
-    extend = False
-    js = ('js/openlayers/OpenLayers.js',
-          'https://maps.google.com/maps/api/js?v=3&sensor=false',
-          'floppyforms/js/MapWidget.js')
 
