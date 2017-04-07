@@ -39,10 +39,10 @@ class PolygonWidget(forms.gis.PolygonWidget, forms.gis.BaseGMapWidget):
 class AddGreenRoofForm(forms.ModelForm):
 	class Meta:
 		model = GreenRoof
-		fields = ['poly']
+		fields = '__all__'
 
 		widgets = {
-		'poly' : PolygonWidget()
+		'poly' : GooglePointFieldWidget()
 		}
 
 
@@ -78,17 +78,17 @@ class GreenRoofAdmin(admin.ModelAdmin):
 # 	poly = forms.gis.PolygonField(widget=PolygonWidget)
 # 	additional_info = forms.CharField(required=False)
 
-	# class GMapPolygonWidget(forms.gis.BaseGMapWidget, forms.gis.PolygonWidget):
-	# 	google_maps_api_key = 'AIzaSyBgFBEhKWM98zvpQHY1h2C_VaVqMDQ2urE'
+class GMapPolygonWidget(forms.gis.BaseGMapWidget, forms.gis.PolygonWidget):
+	google_maps_api_key = 'AIzaSyBgFBEhKWM98zvpQHY1h2C_VaVqMDQ2urE'
 
-	# class GmapForm(forms.Form):
-	#     poly = forms.gis.PolygonField(widget=GMapPolygonWidget)
+class GmapForm(forms.Form):
+    poly = forms.gis.PolygonField(widget=GMapPolygonWidget)
 
-	# class Media:
-	#     extend = False
-	#     js = ('js/openlayers/OpenLayers.js',
-	#           'https://maps.google.com/maps/api/js?v=3&sensor=false',
-	#           'floppyforms/js/MapWidget.js')
+class Media:
+    extend = False
+    js = ('js/openlayers/OpenLayers.js',
+          'https://maps.google.com/maps/api/js?v=3&sensor=false',
+          'floppyforms/js/MapWidget.js')
 
 
 class AuthForm(forms.Form):
