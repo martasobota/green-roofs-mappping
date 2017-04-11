@@ -6,6 +6,7 @@ from django.contrib.gis.db import models
 from django_google_maps import fields as map_fields
 
 
+
 # Create your models here.
 
 DISTRICTS = (
@@ -59,10 +60,10 @@ class GreenRoof(models.Model):
 
     # GeoDjango-specific: a geometry field (MultiPolygonField)
     # In future : adding multipolygon field, so roof might be market out on the map as area
-    poly = models.PolygonField(null=True, blank=True)
+    point = models.PointField(null=True, blank=True)
    
-    lon = models.FloatField()
-    lat = models.FloatField()
+    # lon = models.FloatField()
+    # lat = models.FloatField()
 
     # objects = models.GeoManager()
 
@@ -75,19 +76,3 @@ class GreenRoof(models.Model):
 
     def get_absolute_url(self):
         return reverse('result-gr', kwargs={'pk' : self.id})
-
-
-# class Rental(models.Model):
-#     address = map_fields.AddressField(max_length=200)
-#     geolocation = map_fields.GeoLocationField(max_length=100)
-
-
-
-
-    # @property
-    # def roof_info(self):
-    #     return "{} {}".format(self.district, self.roof_address, self.roof_type)
-
-    # @property
-    # def roof_type_info(self):
-    #     return self.get_roof_type_display()
