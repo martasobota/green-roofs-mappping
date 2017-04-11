@@ -40,8 +40,8 @@ GOOGLE_MAPS_API_KEY = 'AIzaSyBgFBEhKWM98zvpQHY1h2C_VaVqMDQ2urE'
 
 MAP_WIDGETS = {
     "GooglePointFieldWidget": (
-        ("zoom", 15),
-        ("mapCenterLocation", [52.239336, 20.968689]), 
+        ("zoom", 14),
+        ("mapCenterLocation", [52.239336, 20.968689]),
     ),
     "GOOGLE_MAP_API_KEY": "AIzaSyBgFBEhKWM98zvpQHY1h2C_VaVqMDQ2urE"
 }
