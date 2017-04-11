@@ -2,14 +2,14 @@
 
 {% block content %}
 
-
+	<h3>Feel free to fill the form:</h3>
 	<form action="" method="post">
 		{% csrf_token %}
 		{{ form.as_ul }}
 		<input type="submit" name="Add Green Roof"/>
 	</form>
-
 {% endblock %}
+
 	{% block extra_js %}
 		{{ form.media }}
 	{% endblock %}

@@ -6,20 +6,68 @@
 <script   src="https://code.jquery.com/jquery-3.2.1.js"   integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="   crossorigin="anonymous"></script>
 	<title>Warsaw Green Roof Mapping</title>
 	{% block extra_js %} {% endblock %}
+
+ <!-- <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style> -->
 </head>
 	<body>
 
-		<h2>Welcome to Warsaw Green Roof Mapping Site!</h2>
+		<h2>Welcome to Warsaw Green Roof Mapping Site! 🗺</h2>
 
-		<h3>We're developing 🌱 Here will be data for Wola district 📣</h3>
+		<h3>We're developing 🌱 </br>Soon here you will find data for Wola district 📣</h3>
 		
 		{% block content %}
-        {% endblock %}
+    {% endblock %}
 		</br>
-		<div>
-			<h3>Direct Map from Google Maps below:</h3>
-			<h1>'I will be here!' -  Map 🗺</h1>
-		</div>
+
+    <p> For any questions, contact: <a href="mailto:martazaryn@gmail.com?Subject=Green%20Roofs%20Mapping" target="_top">Marta Żaryn</p>
+
+		<!-- <script>
+
+      // This example creates a simple polygon representing the Green Roof at Sokołowska st.
+
+      // function initMap() {
+      //   var map = new google.maps.Map(document.getElementById('map'), {
+      //     zoom: 18,
+      //     center: {lat: 52.239336, lng: 20.968689},
+      //     mapTypeId: 'terrain'
+      //   });
+
+      //   // Defining the LatLng coordinates for the polygon's path.
+      //   var greenRoof = [
+      //     {lat: 52.235846, lng: 20.958775},
+      //     {lat: 52.235952, lng: 20.959035},
+      //     {lat: 52.235735, lng: 20.959023},
+      //     {lat: 52.235744, lng: 20.958772},
+      //     {lat: 52.235846, lng: 20.958775}
+      //   ];
+
+      //   // Construct the polygon.
+      //   var greenRoof = new google.maps.Polygon({
+      //     paths: greenRoof,
+      //     strokeColor: '#909580',
+      //     strokeOpacity: 0.8,
+      //     strokeWeight: 2,
+      //     fillColor: '#545643',
+      //     fillOpacity: 0.35
+      //   });
+      //   greenRoof.setMap(map);
+      // }
+    </script> 
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgFBEhKWM98zvpQHY1h2C_VaVqMDQ2urE&callback=initMap">
+    </script> -->
 
 	</body>
 </html>
