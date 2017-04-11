@@ -13,11 +13,11 @@ from warsaw.models import GreenRoof, District, City
 # Create your views here.
 class WarsawView(View):
 	def get(self, request):
-		return render(request, 'warsaw/base.html')
+		return render(request, 'warsaw/index.html')
 		greenroofs = GreenRoof.objects.order_by('roof_address')
-		template = loader.get_template('warsaw/base.html')
+		template = loader.get_template('warsaw/index.html')
 		context = RequestContext(request, {
-        'greenroofs': greenroofs, 'content': render_to_string('warsaw/base.html', {'waypoints': waypoints})
+        'greenroofs': greenroofs, 'content': render_to_string('warsaw/index.html', {'waypoints': waypoints})
     })
 		return HttpResponse(template.render(context))
 

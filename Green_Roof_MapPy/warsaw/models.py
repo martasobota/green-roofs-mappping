@@ -51,16 +51,16 @@ class District(models.Model):
 class GreenRoof(models.Model):
     district = models.ForeignKey(District) #+ on_delete=models.CASCADE???
     roof_address = models.CharField(max_length=256)
-    roof_type = models.IntegerField(choices=GREEN_ROOF_TYPES, verbose_name='Green roof type: ')
+    roof_type = models.IntegerField(choices=GREEN_ROOF_TYPES, verbose_name='Green roof type')
     area = models.FloatField()
     total_place_area = models.FloatField()
-    access = models.IntegerField(choices=ACCESSABILITY, verbose_name='Accessability: ')
-    ownership_type = models.IntegerField(choices=OWNERSHIP, verbose_name='Type of the building: ')
+    access = models.IntegerField(choices=ACCESSABILITY, verbose_name='Accessability')
+    ownership_type = models.IntegerField(choices=OWNERSHIP, verbose_name='Type of the building')
     additional_info = models.CharField(max_length=1024, null=True)
 
     # GeoDjango-specific: a geometry field (MultiPolygonField)
     # In future : adding multipolygon field, so roof might be market out on the map as area
-    point = models.PointField(null=True, blank=True)
+    point = models.PointField(null=True, blank=True, verbose_name='Pin the place or search by address')
    
     # lon = models.FloatField()
     # lat = models.FloatField()
