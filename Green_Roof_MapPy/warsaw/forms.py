@@ -23,16 +23,16 @@ import floppyforms.__future__ as forms
 from mapwidgets.widgets import GooglePointFieldWidget
 from mapwidgets.widgets import GooglePointFieldInlineWidget
 
-# class GreenRoofAdminForm(forms.ModelForm):
-#     class Meta:
-#         model = GreenRoof
-#         fields = __all__
-#         widgets = {
-#             'coordinates': GooglePointFieldWidget,
-#             'city_hall': GooglePointFieldWidget,
-#         }
+class GreenRoofAdminForm(forms.ModelForm):
+    class Meta:
+        model = GreenRoof
+        fields = '__all__'
+        widgets = {
+            'coordinates': GooglePointFieldWidget,
+            'city_hall': GooglePointFieldWidget,
+        }
 
-class PolygonWidget(forms.gis.PolygonWidget, forms.gis.BaseGMapWidget):
+class PointWidget(forms.gis.PolygonWidget, forms.gis.BaseGMapWidget):
 	google_maps_api_key = 'AIzaSyBgFBEhKWM98zvpQHY1h2C_VaVqMDQ2urE'
 
 
@@ -42,9 +42,8 @@ class AddGreenRoofForm(forms.ModelForm):
 		fields = '__all__'
 
 		widgets = {
-		'poly' : GooglePointFieldWidget()
+		'point' : GooglePointFieldWidget()
 		}
-
 
 
 class GreenRoofAdminInline(admin.TabularInline):
