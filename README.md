@@ -24,7 +24,7 @@ The analysis show benefits that comes from existing green roofs and estimates po
 
 ## Author
 
-* **Marta Zaryn** - *Initial work* - [martazaryn](https://github.com/martazaryn)
+* **Marta Żaryn** - *Initial work* - [martazaryn](https://github.com/martazaryn)
 
 
 ## License
