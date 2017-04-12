@@ -22,10 +22,9 @@ The analysis show benefits that comes from existing green roofs and estimates po
 * [djangorestframework-gis==0.11.1a0]
 
 
-## Author
+## Meta
 
-* **Marta Żaryn** - *Initial work* - [martazaryn](https://github.com/martazaryn)
-[@martazaryn](https://twitter.com/martazaryn) 
+* **Marta Żaryn** - [@martazaryn](https://twitter.com/martazaryn) - martazaryn@gmail.com
 
 
 ## License
