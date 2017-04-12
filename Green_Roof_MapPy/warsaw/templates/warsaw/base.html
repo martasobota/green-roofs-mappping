@@ -3,8 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>🗺Green Roofs Mapping🗺</title>
+
 <script   src="https://code.jquery.com/jquery-3.2.1.js"   integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="   crossorigin="anonymous"></script>
-	<title>Warsaw Green Roof Mapping</title>
+	<title>Warsaw Green Roofs Mapping</title>
 	{% block extra_js %} {% endblock %}
 
  <!-- <style>
@@ -20,15 +22,27 @@
         padding: 0;
       }
     </style> -->
+
+
 </head>
 	<body>
 
-		<h2>Welcome to Warsaw Green Roof Mapping Site! 🗺</h2>
+		<h2>Welcome to Warsaw Green Roofs Mapping Site! 🗺</h2>
 
-		<h3>We're developing 🌱 </br>Soon here you will find data for Wola district 📣</h3>
+		<h3>We're developing 🌱 </br>Soon you will find here data for Wola district 📣</h3>
+  
+    <div id="centered">
+  		{% block content %}
+      {% endblock %}
+    </div>
 
-		{% block content %}
-    {% endblock %}
+    <strong>Logged: </strong>{{ user }}
+        {% if user.is_authenticated %}
+            <p>Hello, {{ user.username }}. Thank you for login! You can add, update and delete green roofs 🌿</p>
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <p>Hello, If you have admin account, login <a href="{% url 'login' %}">here</a><p>
+        {% endif %}
 
     <p> For any questions, contact: <a href="mailto:martazaryn@gmail.com?Subject=Green%20Roofs%20Mapping" target="_top">Marta Żaryn</a></p>
 
