@@ -2,6 +2,32 @@
 
 {% block content %}
 
+    <!-- Map Box map below -->
+    <div id='map' style='width: 500px; height: 300px;'></div>
+      <script>
+      mapboxgl.accessToken = 'pk.eyJ1IjoibWFydGF6YXJ5biIsImEiOiJjajFvd2h0aWIwMDB5Mndtbmlocms2amwzIn0.IiWh5GFR8jjOMOLbiMoM6w';
+      var map = new mapboxgl.Map({
+      container: 'map',
+      zoom: 12,
+      center: [20.955986, 52.237794],
+      style: 'mapbox://styles/mapbox/satellite-v9'
+      });
+      </script>
+
+<!--
+<div id='map'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoibWFydGF6YXJ5biIsImEiOiJjajFvd2h0aWIwMDB5Mndtbmlocms2amwzIn0.IiWh5GFR8jjOMOLbiMoM6w';
+var map = new mapboxgl.Map({
+    container: 'map',
+    zoom: 9,
+    center: [137.9150899566626, 36.25956997955441],
+    style: 'mapbox://styles/mapbox/satellite-v9',
+    hash: false
+    Wola (poza kodem!): 52.237794, 20.955986
+});
+</script> -->
+
 {% endblock %}
 
 
