@@ -7,8 +7,6 @@ from django_google_maps import fields as map_fields
 
 
 
-# Create your models here.
-
 DISTRICTS = (
 	(1, 'Wola'),
 	(2, 'Śródmieście'),
@@ -57,15 +55,11 @@ class GreenRoof(models.Model):
     access = models.IntegerField(choices=ACCESSABILITY, verbose_name='Accessability')
     ownership_type = models.IntegerField(choices=OWNERSHIP, verbose_name='Type of the building')
     additional_info = models.CharField(max_length=1024, null=True)
-
-    # GeoDjango-specific: a geometry field (MultiPolygonField)
-    # In future : adding multipolygon field, so roof might be market out on the map as area
     point = models.PointField(null=True, blank=True, verbose_name='Pin the place or search by address')
-   
-    # lon = models.FloatField()
-    # lat = models.FloatField()
-
-    # objects = models.GeoManager()
+    # GeoManager is a must to make Geo Queries in Django
+    objects = models.GeoManager()
+    poly = models.PolygonField(null=True, blank=True, verbose_name='Pin the green roof area to create a polygon')
+    objects = models.GeoManager()
 
     class Meta:
     	verbose_name='Green roof'
