@@ -37,4 +37,3 @@ urlpatterns = [
     url(r'^result_gr/(?P<pk>(\d)+)', GreenRoofView.as_view(), name='result-gr'),
 ]
 
-    
