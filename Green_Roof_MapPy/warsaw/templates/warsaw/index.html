@@ -4,15 +4,67 @@
 
     <!-- Map Box map below -->
     <div id='map' style='width: 500px; height: 300px;'></div>
+    <div id='menu'>
+    <input id='basic' type='radio' name='rtoggle' value='basic' checked='checked'>
+    <label for='basic'>basic</label>
+    <input id='streets' type='radio' name='rtoggle' value='streets'>
+    <label for='streets'>streets</label>
+    <input id='bright' type='radio' name='rtoggle' value='bright'>
+    <label for='bright'>bright</label>
+    <input id='light' type='radio' name='rtoggle' value='light'>
+    <label for='light'>light</label>
+    <input id='dark' type='radio' name='rtoggle' value='dark'>
+    <label for='dark'>dark</label>
+    <input id='satellite' type='radio' name='rtoggle' value='satellite'>
+    <label for='satellite'>satellite</label>
+    </div>
       <script>
-      mapboxgl.accessToken = 'pk.eyJ1IjoibWFydGF6YXJ5biIsImEiOiJjajFvd2h0aWIwMDB5Mndtbmlocms2amwzIn0.IiWh5GFR8jjOMOLbiMoM6w';
+      mapboxgl.accessToken = 'sk.eyJ1IjoibWFydGF6YXJ5biIsImEiOiJjajFxaWZxOWkwMDFxMndtejdobmxmMXpyIn0.dzo48bNge7zEsnaKerMyvw';
       var map = new mapboxgl.Map({
       container: 'map',
       zoom: 12,
       center: [20.955986, 52.237794],
-      style: 'mapbox://styles/mapbox/satellite-v9'
+      style: 'mapbox://styles/mapbox/satellite-streets-v9'
+
+
+
+      // var myLayer = L.mapbox.featureLayer()
+      //   .loadURL('geojson/wola_warsaw.geojson')
+      //   .addTo(map);
+      // hash: false, (what does hash do that it turns off the map?)
       });
+
+      map.on('load', function () {
+
+      map.addLayer({
+          "id": "terrain-data",
+          "type": "line",
+          "source": {
+              type: 'vector',
+              // url: 'mapbox://mapbox.mapbox-terrain-v2'
+              url: 'mapbox://styles/mapbox/martazaryn.2p7rh7nj'
+
+          },
+          "source-layer": "contour",
+          "layout": {
+              "line-join": "round",
+              "line-cap": "round"
+          },
+          "paint": {
+              "line-color": "#ff69b4",
+              "line-width": 1
+          }
+      });
+  });
+
       </script>
+
+
+
+
+
+{# secret wola mapbox key: sk.eyJ1IjoibWFydGF6YXJ5biIsImEiOiJjajFxaWZxOWkwMDFxMndtejdobmxmMXpyIn0.dzo48bNge7zEsnaKerMyvw #}
+{# public wola mapbox key:  pk.eyJ1IjoibWFydGF6YXJ5biIsImEiOiJjajFydHB1NXIwMDBsMzJyemQyYmJ4bjF5In0.stjDLBXan-79NM66MJggNQ #}
 
 <!--
 <div id='map'></div>
