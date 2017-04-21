@@ -16,10 +16,9 @@ from django.contrib.auth import authenticate
 from django import forms 
 from django.contrib.gis import forms
 from django.contrib import admin
-# import floppyforms as forms
 import floppyforms.__future__ as forms
 
-# from mapwidgets.widgets import GooglePolygonFieldWidget
+# from mapwidgets.widgets import GooglePolygonFieldWidget there isn't such a widget
 from mapwidgets.widgets import GooglePointFieldWidget
 from mapwidgets.widgets import GooglePointFieldInlineWidget
 
@@ -112,7 +111,3 @@ class AuthForm(forms.Form):
 
 class SearchForm(forms.Form): 
 	address = forms.CharField(label='Green Roof Address', max_length=100)
-
-
-
-

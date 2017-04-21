@@ -1,14 +1,17 @@
 from django.contrib.auth import get_user_model, login, logout
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
-from django.http import HttpResponseRedirect
+from django.db.models import Q # import for AJAX / dynamic searching
+from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.template import RequestContext, loader
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.views import View
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy, reverse
 from .forms import AuthForm, SearchForm, AddGreenRoofForm
 from warsaw.models import GreenRoof, District, City
+
+
 
 # Create your views here.
 class WarsawView(View):
