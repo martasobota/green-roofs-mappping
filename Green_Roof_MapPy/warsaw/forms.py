@@ -18,7 +18,6 @@ from django.contrib.gis import forms
 from django.contrib import admin
 import floppyforms.__future__ as forms
 
-# from mapwidgets.widgets import GooglePolygonFieldWidget there isn't such a widget
 from mapwidgets.widgets import GooglePointFieldWidget
 from mapwidgets.widgets import GooglePointFieldInlineWidget
 
@@ -54,17 +53,6 @@ class GreenRoofAdminInline(admin.TabularInline):
 
 class GreenRoofAdmin(admin.ModelAdmin):
     inlines = (GreenRoofAdminInline,)
-
-
-	# roof_address = forms.CharField(max_length=256)
-	# roof_type = forms.ChoiceField(choices=GREEN_ROOF_TYPES)
-	# area = forms.FloatField()
-	# total_place_area = forms.FloatField()
-	# access = forms.ChoiceField(choices=ACCESSABILITY)
-	# ownership_type = forms.ChoiceField(choices=OWNERSHIP)
-	# poly = forms.gis.PolygonField(widget=PolygonWidget)
-	# additional_info = forms.CharField(required=False)
-
 
 # class AddGreenRoofForm(forms.Form):
 # 	roof_address = forms.CharField(max_length=256)
