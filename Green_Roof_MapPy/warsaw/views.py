@@ -12,8 +12,6 @@ from .forms import AuthForm, SearchForm, AddGreenRoofForm
 from warsaw.models import GreenRoof, District, City
 
 
-
-# Create your views here.
 class WarsawView(View):
 	def get(self, request):
 		return render(request, 'warsaw/index.html')
